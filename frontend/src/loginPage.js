@@ -17,40 +17,34 @@ export default function LoginPage() {
     //   localStorage.setItem('token', res.data.token);
     };
     return (
-        // <form onSubmit={handleSubmit}>
-        //   <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        //   <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        //   <button type="submit">Login</button>
-        // </form>
-        <div>
-            <nav className="login-top-nav-bar">
-            <ul>
-                <li><a href="#">DocuShare</a></li>
-            </ul>
-    </nav>
-        
-     <div className="login-center">
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit} method="post">
-        <div className="txt_field">
-          <input type="text" onChange={(e) => setEmail(e.target.value)} required/>
-          <span></span>
-          <label>Email</label>
+      <div>
+        <nav className="login-top-nav-bar">
+          <ul>
+              <li><a href="/home">DocuShare</a></li>
+          </ul>
+        </nav>
+        <div className="login-center">
+          <h1>Login</h1>
+          <form onSubmit={handleSubmit} method="post">
+            <div className="txt_field">
+              <input type="text" onChange={(e) => setEmail(e.target.value)} required/>
+              <span></span>
+              <label>Email</label>
+            </div>
+            <div className="txt_field">
+              <input type="password" onChange={(e) => setPassword(e.target.value)} required/>
+              <span></span>
+              <label>Password</label>
+            </div>
+            <div className="pass">Forgot Password?</div>
+            <input type="submit" value="Login"/>
+            <div className="signup_link">
+              Not a member? <a href="#">Signup</a>
+            </div>
+          </form>
         </div>
-        <div className="txt_field">
-          <input type="password" onChange={(e) => setPassword(e.target.value)} required/>
-          <span></span>
-          <label>Password</label>
-        </div>
-        <div className="pass">Forgot Password?</div>
-        <input type="submit" value="Login"/>
-        <div className="signup_link">
-          Not a member? <a href="#">Signup</a>
-        </div>
-      </form>
-     </div>
-     </div>
-      );
+      </div>
+    );
 }
 
 //     <div className="login-center">

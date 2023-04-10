@@ -34,6 +34,11 @@ export default function TextEditor() {
         
     },[socket,quill])
 
+    useEffect(()=>{
+        // 👇 add class to body element
+        document.body.classList.add('text-editor-body');
+    })
+
     useEffect(() => {
         if(socket == null || quill == null) return 
 

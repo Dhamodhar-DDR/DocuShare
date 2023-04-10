@@ -1,5 +1,6 @@
 import TextEditor from "./textEditor";
 import LoginPage from "./loginPage";
+import HomePage from "./homePage"
 import {
   BrowserRouter as Router,
   Routes,
@@ -13,6 +14,7 @@ function App() {
   <Router>
      <Routes>
           <Route path="/login" exact element = {<LoginPage/>}/>
+          <Route path="/home" exact element = {<HomePage/>}/>
           <Route path="/" exact element={<Navigate to={`/documents/${uuidV4()}`}/>}/>
           <Route path="/documents/:id" element = {<TextEditor/>}/>
       </Routes>
