@@ -29,10 +29,16 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  text-align: center;
-  padding: 20px 0;
-  color: #000000d6;
-  border-bottom: 1px solid silver;
+    text-align: center;
+    padding: 20px 0;
+    color: #000000d6;
+    border-bottom: 1px solid silver;
+    background-color: #e5e5f7;
+    opacity: 0.8;
+    background-image: radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px);
+    background-size: 10px 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 .login-center form{
   padding: 0 40px;
@@ -46,6 +52,7 @@ form .txt_field{
 .txt_field input{
   width: 100%;
   padding: 0 5px;
+  font-family: 'Google Sans', sans-serif;
   height: 40px;
   font-size: 16px;
   border: none;

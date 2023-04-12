@@ -2,6 +2,7 @@ import {React,useCallback,useEffect, useRef, useState} from 'react'
 import Quill from 'quill'
 import {io} from "socket.io-client"
 import { useParams } from 'react-router'
+import { useSearchParams } from 'react-router-dom';
 
 import "quill/dist/quill.snow.css"
 import "./styles/textEditor.css"
@@ -19,9 +20,11 @@ const TOOLBAR_OPTIONS = [
 ]
 const SAVE_INTERVAL_MS = 200
 export default function TextEditor() {
-    const {id: documentId} = useParams()
+    // const {documentId, setDocumentId} = useParams()
     const [socket,setSocket] = useState() 
     const [quill,setQuill] = useState() 
+    const [searchParams, setSearchParams] = useSearchParams()
+
     
     useEffect(() => {
         if(socket == null || quill == null) return 
@@ -30,24 +33,23 @@ export default function TextEditor() {
         }, SAVE_INTERVAL_MS)
         return () =>{
             clearInterval(interval) 
-        }
-        
+        }        
     },[socket,quill])
 
     useEffect(()=>{
-        // 👇 add class to body element
+        const reg = /^[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i
+        console.log(reg.test(searchParams.get('docId')))
         document.body.classList.add('text-editor-body');
     })
 
     useEffect(() => {
         if(socket == null || quill == null) return 
-
         socket.once('load-document', document => {
             quill.setContents(document)
             quill.enable()
         })
-        socket.emit('get-document',documentId) 
-    },[socket,quill,documentId])
+        socket.emit('get-document',searchParams.get('docId'), localStorage.getItem('authToken'), searchParams.get('docName')) 
+    },[socket,quill])
 
     useEffect(() => {
         const skt = io("http://localhost:3001")

@@ -1,20 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import "./styles/loginPage.css"
+import axios from "axios"
+import { useNavigate } from 'react-router-dom';
 
-export default function LoginPage() {
+
+export default function LoginPage({onLogin}) {
     useEffect(()=>{
-            // 👇 add class to body element
         document.body.classList.add('login-body');
     })
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    
+    const nav = useNavigate();
+
     const handleSubmit = async (e) => {
       e.preventDefault();
       const data = { email, password };
-    //   const res = await axios.post('/api/auth/login', data);
-    //   localStorage.setItem('token', res.data.token);
+      axios.post('http://localhost:3002/login', data)
+      .then(response => {
+        console.log(response.data.token);
+        onLogin(response.data.token);
+        nav('/home')
+      })
+      .catch(error => {
+        console.log(error);
+      });
     };
     return (
       <div>
@@ -36,10 +46,10 @@ export default function LoginPage() {
               <span></span>
               <label>Password</label>
             </div>
-            <div className="pass">Forgot Password?</div>
+            {/* <div className="pass">Forgot Password?</div> */}
             <input type="submit" value="Login"/>
             <div className="signup_link">
-              Not a member? <a href="#">Signup</a>
+              Not a member? <a href="/register">Signup</a>
             </div>
           </form>
         </div>
