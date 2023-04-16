@@ -38,7 +38,7 @@ export default function TextEditor() {
 
     useEffect(()=>{
         const reg = /^[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i
-        console.log(reg.test(searchParams.get('docId')))
+        console.log(reg.test(searchParams.get('docId')));
         document.body.classList.add('text-editor-body');
     })
 

@@ -238,3 +238,20 @@ background-size: 10px 10px;
     outline: none;
 }
 
+.NoFiles {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.NoFiles button{
+  background-color: #ffffff;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.NoFiles button:hover{
+  cursor: pointer;
+  background-color: #ccc;
+}

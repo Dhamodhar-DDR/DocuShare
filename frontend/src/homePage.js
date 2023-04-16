@@ -59,14 +59,12 @@ export default function HomePage({onLogout}) {
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken');
         axios.get('http://localhost:3002/get_docs')
         .then(response => {
-            console.log(response.data)
             var ls = []
             for(let i = 0;i<response.data.length;i++)
             {
                 ls.push({name: response.data[i].name,id:response.data[i]._id,  type: 'txt', size: '10MB'});
             }
             setFiles(ls);
-            console.log(ls);
         })
         .catch(error => {
           console.log(error);
@@ -94,6 +92,16 @@ export default function HomePage({onLogout}) {
                 <div className="search-bar">
                     <input type="text" placeholder="&#x1F50E;&#xFE0E; Search" onChange={handleSearch} />
                 </div>
+                {
+                    files_list.length == 0 ? 
+                    <div className="NoFiles">
+                        <h2>No files</h2>
+                        <button onClick={togglePopup}>
+                            Create new document
+                        </button>
+                    </div> 
+                    :<></>
+                }
                 {filteredFiles.map(file => (
                     <div className="file" onClick={handleDocOpen(file.id)} key={file.id}>
                         <div className="file-icon">
